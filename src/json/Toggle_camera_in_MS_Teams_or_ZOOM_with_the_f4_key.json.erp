@@ -1,0 +1,21 @@
+{
+  "title": "Toggle camera in MS Teams or ZOOM with the f4 key",
+  "rules": [
+    {
+      "description": "Maps F4 to ⌘⇧O in MS Teams or ⌘⇧V to ZOOM. F4 has an MIC symbol on recent MacOS keyboards.",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "f4“
+          },
+          "to": [
+            {
+              "shell_command": "if [ $(ps aux | grep -v grep | grep -ci \"Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper.app\") -gt 0 ]; then osascript -e 'activate application id \"com.microsoft.teams\"' -e 'tell application \"System Events\" to keystroke \“o\“ using {command down, shift down}'; fi & if [ $(ps aux | grep -v grep | grep -ci \"zoom.us.app/Contents/Frameworks/cpthost.app/Contents/MacOS/CptHost\") -gt 0 ]; then osascript -e 'activate application id \"us.zoom.xos\"' -e 'tell application \"System Events\" to keystroke \“v\“ using {command down, shift down}'; fi"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    }
+  ]
+}
